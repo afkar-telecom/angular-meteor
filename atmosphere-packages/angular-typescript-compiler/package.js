@@ -1,6 +1,6 @@
 Package.describe({
   name: 'angular-typescript-compiler',
-  version: '0.4.0',
+  version: '0.5.0',
   summary: 'Angular TypeScript Compiler Package',
   git: 'https://github.com/Urigo/angular-meteor/tree/master/atmosphere-packages/angular-typescript-compiler',
   documentation: null
@@ -20,8 +20,8 @@ Package.onUse(function (api) {
     [
       "ecmascript",
       "babel-compiler@7.5.3",
-      "angular-html-compiler@0.4.0",
-      "angular-scss-compiler@0.4.0",
+      "angular-html-compiler@0.5.0",
+      "angular-scss-compiler@0.5.0",
     ],
     "server"
   );

@@ -13,7 +13,7 @@ import {
 
 import {
   TSBuild
-} from 'meteor-typescript';
+} from '@digicore/meteor-typescript';
 
 
 import rollup from './rollup';
@@ -108,18 +108,24 @@ export class AngularTsCompiler {
 
   replaceDynamicLoadingCode(code) {
 
-    return code.replace(LOAD_CHILDREN_REGEX,
-      (match, url) => {
-        url = url.split('\'').join('').split('"').join('').split(',').join('');
-        const urlArr = url.split('#');
-        let modulePath = urlArr[0].trim();
-        let moduleName = urlArr[1].trim();
-        if (this.isAot) {
-          modulePath += '.ngfactory';
-          moduleName += 'NgFactory';
-        }
-        return `loadChildren: () => module.dynamicImport('${modulePath}').then(allModule => allModule['${moduleName}'])`;
-      });
+    while (code.match(LOAD_CHILDREN_REGEX) && code.match(LOAD_CHILDREN_REGEX).length > 0) {
+
+      code = code.replace(LOAD_CHILDREN_REGEX,
+        (url, match) => {
+          url = url.split('loadChildren:').join('').split(' ').join('').split('\'').join('').split('"').join('').split(',').join('');
+          const urlArr = url.split('#');
+          let modulePath = urlArr[0].trim();
+          let moduleName = urlArr[1].trim();
+          if (this.isAot) {
+            modulePath += '.ngfactory';
+            moduleName += 'NgFactory';
+          }
+          return `loadChildren: () => module.dynamicImport('${modulePath}').then(allModule => allModule['${moduleName}'])`;
+        });
+    
+    }
+    
+    return code;
 
   }
   replaceStringsWithFullUrls(basePath, urls, firstSlash) {

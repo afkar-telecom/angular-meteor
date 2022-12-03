@@ -7,11 +7,11 @@ Package.describe({
 });
 
 Npm.depends({
-  "meteor-typescript": "0.9.0",
-  rollup: "2.26.11",
-  "rollup-plugin-node-resolve": "5.2.0",
+  "@digicore/meteor-typescript": "0.9.4",
+  "rollup": "3.5.1",
+  "@rollup/plugin-node-resolve": "15.0.1",
   "rollup-plugin-hypothetical": "2.1.0",
-  "rollup-plugin-commonjs": "10.1.0",
+  "@rollup/plugin-commonjs": "23.0.3",
 });
 
 Package.onUse(function (api) {

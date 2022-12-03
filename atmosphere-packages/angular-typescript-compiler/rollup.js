@@ -1,8 +1,8 @@
 const path = Npm.require('path');
 const baseRollup = Npm.require('rollup').rollup;
 const Hypothetical = Npm.require('rollup-plugin-hypothetical');
-const CommonJS = Npm.require('rollup-plugin-commonjs');
-const NodeResolve = Npm.require('rollup-plugin-node-resolve');
+const CommonJS = Npm.require('@rollup/plugin-commonjs');
+const NodeResolve = Npm.require('@rollup/plugin-node-resolve');
 
 import {getMeteorPath, isRooted, getNoRooted} from './file-utils';
 
